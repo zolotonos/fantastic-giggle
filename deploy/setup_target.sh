@@ -7,7 +7,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/doc
 chmod a+r /etc/apt/keyrings/docker.asc
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  $(grep VERSION_CODENAME /etc/os-release | cut -d= -f2) stable" | \
   tee /etc/apt/sources.list.d/docker.list > /dev/null
 apt-get update
 apt-get install -y docker-ce docker-ce-cli containerd.io
@@ -18,8 +18,8 @@ mariadb -e "CREATE USER IF NOT EXISTS 'app_user'@'localhost' IDENTIFIED BY '1234
 mariadb -e "GRANT ALL PRIVILEGES ON mywebapp.* TO 'app_user'@'localhost';"
 mariadb -e "FLUSH PRIVILEGES;"
 rm -f /etc/nginx/sites-enabled/default
-cp nginx.conf /etc/nginx/sites-available/mywebapp
-ln -sf /etc/nginx/sites-available/mywebapp /etc/nginx/sites-enabled/mywebapp
-systemctl restart nginx
+cp nginx.conf /etc/nginx/sites-available/mywebapp || true
+ln -sf /etc/nginx/sites-available/mywebapp /etc/nginx/sites-enabled/mywebapp || true
+systemctl restart nginx || true
 systemctl enable nginx
 mkdir -p /opt/mywebapp
