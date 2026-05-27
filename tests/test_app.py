@@ -1,5 +1,4 @@
 import pytest
-import app.main
 from app.main import app
 
 
@@ -56,18 +55,18 @@ class MockConn:
 
 
 def test_tasks_get(client, monkeypatch):
-    monkeypatch.setattr(app.main, "get_db_connection", lambda: MockConn())
+    monkeypatch.setattr("app.main.get_db_connection", lambda: MockConn())
     rv = client.get('/tasks')
     assert rv.status_code == 200
 
 
 def test_tasks_post(client, monkeypatch):
-    monkeypatch.setattr(app.main, "get_db_connection", lambda: MockConn())
+    monkeypatch.setattr("app.main.get_db_connection", lambda: MockConn())
     rv = client.post('/tasks', json={"title": "New Task"})
     assert rv.status_code == 201
 
 
 def test_task_done(client, monkeypatch):
-    monkeypatch.setattr(app.main, "get_db_connection", lambda: MockConn())
+    monkeypatch.setattr("app.main.get_db_connection", lambda: MockConn())
     rv = client.post('/tasks/1/done')
     assert rv.status_code == 200
