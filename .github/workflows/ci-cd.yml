@@ -42,7 +42,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r app/requirements.txt
       - name: Run Pytest with Coverage
-        run: pytest --cov=app --cov-report=xml --cov-fail-under=40 tests/
+        run: python -m pytest --cov=app --cov-report=xml --cov-fail-under=40 tests/
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
         if: always()
