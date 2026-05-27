@@ -24,3 +24,4 @@ def test_root_html_accept(client):
     rv = client.get('/', headers={'Accept': 'text/html'})
     assert rv.status_code == 200
     assert b'GET /tasks' in rv.data
+    
