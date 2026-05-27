@@ -84,4 +84,3 @@ def task_done(task_id):
     conn.commit()
     conn.close()
     return jsonify({"status": "success"}), 200
-    
