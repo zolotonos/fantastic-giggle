@@ -4,7 +4,7 @@ import os
 parser = argparse.ArgumentParser()
 parser.add_argument('--db-host', required=True)
 parser.add_argument('--db-user', required=True)
-parser.add_argument('--db-pass', required=True)
+parser.add_argument('--db-pass', required=True
 parser.add_argument('--db-name', required=True)
 parser.add_argument('--port', type=int, required=True)
 args, unknown = parser.parse_known_args()
