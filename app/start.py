@@ -15,4 +15,4 @@ os.environ['DB_PASS'] = args.db_pass
 os.environ['DB_NAME'] = args.db_name
 os.environ['APP_PORT'] = str(args.port)
 
-os.execvp('/opt/mywebapp/venv/bin/gunicorn', ['gunicorn', 'main:app'] + unknown)
+os.execvp('gunicorn', ['gunicorn', 'main:app'] + unknown)
