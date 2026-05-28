@@ -11,7 +11,7 @@ def client():
 
 def test_alive(client):
     rv = client.get('/health/alive')
-    assert rv.status_code == 404
+    assert rv.status_code == 200
     assert b'OK' in rv.data
 
 
